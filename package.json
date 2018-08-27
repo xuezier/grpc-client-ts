@@ -1,6 +1,6 @@
 {
   "name": "grpc-client-ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a grpc client side module built by typescrpt",
   "main": "app/index.js",
   "scripts": {
@@ -27,5 +27,10 @@
   "dependencies": {
     "grpc": "^1.12.4",
     "reflect-metadata": "^0.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^10.9.2",
+    "ts-loader": "^4.5.0",
+    "typescript": "^3.0.1"
   }
 }

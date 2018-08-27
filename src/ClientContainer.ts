@@ -9,7 +9,7 @@ import * as GRPC from 'grpc';
 import { Property } from './interface/Property';
 
 export class ClientContainer {
-  static clients: { service: any, client: GRPC.Client, target: Function }[] = [];
+  static clients: { service: any, client?: GRPC.Client, target: Function }[] = [];
   static routes: { target: Function, property: Property, key: string }[] = [];
 
 
@@ -36,9 +36,9 @@ export class ClientContainer {
     route.property.value = func;
   }
 
-  static private _generateRouteFunc(route: Function, target: Function, key: string): Function {
+  private static _generateRouteFunc(route: Function, target: Function, key: string): Function {
     let clientContainer = this.getClient(target.constructor);
-    let func = async function (): any {
+    let func = async function (): Promise<any> {
       let _func = clientContainer.client[key];
       if (_func instanceof Function) {
         let _routeFunc = route;
