@@ -5,10 +5,10 @@
  * @modify date 2018-06-22 11:50:05
  * @desc [description]
  */
-import * as GRPC from "grpc";
-import * as FS from "fs";
-import { SettingRegistry } from "./SettingRegistry";
-import { ClientContainer } from "./ClientContainer";
+import * as GRPC from 'grpc';
+import * as FS from 'fs';
+import { SettingRegistry } from './SettingRegistry';
+import { ClientContainer } from './ClientContainer';
 
 export class RpcClientRegistry {
   private static _credentials: GRPC.ChannelCredentials;
@@ -77,9 +77,13 @@ export class RpcClientRegistry {
   }
 
   private static _addAuth() {
-    let ca = FS.readFileSync(this.ca);
-    let cert = FS.readFileSync(this.client_cert);
-    let key = FS.readFileSync(this.client_key);
-    this._credentials = GRPC.credentials.createSsl(ca, key, cert);
+    if (!this.ca || !this.client_cert || ! this.client_key) {
+      this._credentials = GRPC.credentials.createInsecure();
+    } else {
+      let ca = FS.readFileSync(this.ca);
+      let cert = FS.readFileSync(this.client_cert);
+      let key = FS.readFileSync(this.client_key);
+      this._credentials = GRPC.credentials.createSsl(ca, key, cert);
+    }
   }
 }
