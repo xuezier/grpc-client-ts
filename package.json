@@ -1,6 +1,6 @@
 {
   "name": "grpc-client-ts",
-  "version": "1.0.5",
+  "version": "1.1.1",
   "description": "a grpc client side module built by typescrpt",
   "main": "app/index.js",
   "types": "app/index.d.ts",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/xuezier/grpc-client-ts#readme",
   "dependencies": {
+    "@grpc/proto-loader": "^0.3.0",
     "grpc": "^1.12.4",
     "reflect-metadata": "^0.1.12"
   },
