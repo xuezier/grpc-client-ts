@@ -103,9 +103,9 @@ export class ClientContainer {
           let call = _func.call(clientContainer.client, async(err, res) => {
             if (err) return reject(err);
 
-            const result = await _routeFunc(_writeData, res);
+            let result = await _routeFunc(_writeData, res);
             if (!result) {
-              result = chunk;
+              result = res;
             }
             resolve(result);
           });
@@ -137,7 +137,7 @@ export class ClientContainer {
           });
 
           call.on('data', async chunk => {
-            const result = await _routeFunc(_writeData, chunk);
+            let result = await _routeFunc(_writeData, chunk);
             if (!result) {
               result = chunk;
             }
@@ -155,9 +155,9 @@ export class ClientContainer {
           _func.call(clientContainer.client, _writeData, async(err, res) => {
             if (err) return reject(err);
 
-            const result = await _routeFunc(_writeData, res);
+            let result = await _routeFunc(_writeData, res);
             if (!result) {
-              result = chunk;
+              result = res;
             }
             resolve(result);
           });
